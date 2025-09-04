@@ -1,0 +1,15 @@
+(* SmeftFR v3.0 package *)
+(* Contains definitions of interaction orders (as used by Madgraph5) *)
+
+M$InteractionOrderHierarchy = {
+{QCD,1},
+{NP,1},
+{QED,1}
+}
+
+M$InteractionOrderLimit = {
+{QCD,99},
+{NP,2},
+{QED,99}
+}
+

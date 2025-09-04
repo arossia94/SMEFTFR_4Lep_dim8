@@ -1,0 +1,83 @@
+(* SmeftFR v2.0 package *)
+(* psi^2 X phi class operators*)
+
+
+LQeW := Module[{sp1,sp2,ii,jj,ll,si,nu,ff1,ff2,aux},
+
+aux = LLbar[sp1,ii,ff1].lR[sp2,ff2] Sigma[si,nu,sp1,sp2] 2*Ta[ll,ii,jj] Phi[jj] FS[Wi,si,nu,ll];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "eW"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+LQeB := Module[{sp1,sp2,ii,si,nu,ff1,ff2,aux},
+
+aux = LLbar[sp1,ii,ff1].lR[sp2,ff2] Sigma[si,nu,sp1,sp2] Phi[ii] FS[B,si,nu];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "eB"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+LQuG := Module[{sp1,sp2,ii,kk,a,si,nu,mm,nn,ff1,ff2,aux},
+
+aux = QLbar[sp1,ii,ff1,mm].uR[sp2,ff2,nn] Sigma[si,nu,sp1,sp2] T[a,mm,nn] Eps[ii,kk] HC[Phi[kk]] FS[Gl,si,nu,a];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "uG"][ff1,ff2] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+LQuW := Module[{sp1,sp2,ii,jj,kk,ll,cc,si,nu,ff1,ff2,aux},
+
+aux = QLbar[sp1,ii,ff1,cc].uR[sp2,ff2,cc] Sigma[si,nu,sp1,sp2] 2 Ta[ll,ii,jj] Eps[jj,kk] HC[Phi[kk]] FS[Wi,si,nu,ll];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "uW"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+LQuB := Module[{sp1,sp2,ii,kk,cc,si,nu,ff1,ff2,aux},
+
+aux = QLbar[sp1,ii,ff1,cc].uR[sp2,ff2,cc] Sigma[si,nu,sp1,sp2] Eps[ii,kk] HC[Phi[kk]] FS[B,si,nu];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "uB"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+LQdG := Module[{sp1,sp2,ii,a,si,mm,nn,nu,ff1,ff2,aux},
+
+aux = QLbar[sp1,ii,ff1,mm].dR[sp2,ff2,nn] Sigma[si,nu,sp1,sp2] T[a,mm,nn] Phi[ii] FS[Gl,si,nu,a];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "dG"][ff1,ff2] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+LQdW := Module[{sp1,sp2,ii,jj,ll,cc,si,nu,ff1,ff2,aux},
+
+aux = QLbar[sp1,ii,ff1,cc].dR[sp2,ff2,cc] Sigma[si,nu,sp1,sp2] 2 Ta[ll,ii,jj] Phi[jj] FS[Wi,si,nu,ll];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "dW"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+
+LQdB := Module[{sp1,sp2,ii,cc,si,nu,ff1,ff2,aux},
+
+aux = QLbar[sp1,ii,ff1,cc].dR[sp2,ff2,cc] Sigma[si,nu,sp1,sp2] Phi[ii] FS[B,si,nu];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "dB"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+

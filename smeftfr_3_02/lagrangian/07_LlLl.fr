@@ -1,0 +1,55 @@
+(* SmeftFR v2.0 package *)
+(* 4-fermion operators with four left fields, (Lbar L)(Lbar L) *)
+
+LQll := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,ii,jj,si,nu,aux},
+
+aux = (LLbar[sp1,ii,ff1].LL[sp2,ii,ff2]).(LLbar[sp3,jj,ff3].LL[sp4,jj,ff4]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ll"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQqq1 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,ii,jj,cc,dd,si,nu,aux},
+
+aux = (QLbar[sp1,ii,ff1,cc].QL[sp2,ii,ff2,cc]).(QLbar[sp3,jj,ff3,dd].QL[sp4,jj,ff4,dd]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "qq1"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+
+LQqq3 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,ii1,ii2,jj1,jj2,cc,dd,m,si,nu,aux},
+
+aux = (QLbar[sp1,ii1,ff1,cc].QL[sp2,ii2,ff2,cc]).(QLbar[sp3,jj1,ff3,dd].QL[sp4,jj2,ff4,dd]) 2 Ta[m,ii1,ii2] 2*Ta[m,jj1,jj2] Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "qq3"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQlq1 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,ii,jj,cc,si,nu,aux},
+
+aux = (LLbar[sp1,ii,ff1].LL[sp2,ii,ff2]).(QLbar[sp3,jj,ff3,cc].QL[sp4,jj,ff4,cc]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "lq1"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQlq3 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,ii1,ii2,jj1,jj2,cc,m,si,nu,aux},
+
+aux = ExpandIndices[
+(LLbar[sp1,ii1,ff1].LL[sp2,ii2,ff2]).(QLbar[sp3,jj1,ff3,cc].QL[sp4,jj2,ff4,cc]) 2*Ta[m,ii1,ii2] 2*Ta[m,jj1,jj2] Ga[nu,sp1,sp2] Ga[nu,sp3,sp4],
+FlavorExpand -> SU2D];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "lq3"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+

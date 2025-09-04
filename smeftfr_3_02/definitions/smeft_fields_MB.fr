@@ -1,0 +1,312 @@
+(* SmeftFR v3.0 package *)
+(* Contains definitions of ONLY physical SM fields and quantum numbers *)
+
+(* ************* ************ *)
+(* Information *)
+(* ************************** *)
+M$ModelName = SMEFT$ModelName;
+
+M$Information = {
+  Authors      -> SMEFT$Authors,
+  Version      -> SMEFT$Version,
+  Date         -> SMEFT$Date(*,
+  Institutions -> SMEFT$Institutions,
+  Emails       -> SMEFT$Emails,
+  URLs         -> SMEFT$URLs*)
+};
+
+
+
+(* ************************** *)
+(* Gauge groups *)
+(* ************************** *)
+M$GaugeGroups = {
+  U1Y  == {
+    Abelian          -> True,
+    CouplingConstant -> G1,
+    GaugeBoson       -> B,
+    Charge           -> Y
+  },
+  SU2L == {
+    Abelian           -> False,
+    CouplingConstant  -> GW,
+    GaugeBoson        -> Wi,
+    StructureConstant -> Eps,
+    Representations   -> {Ta,SU2D},
+    Definitions       -> {Ta[a_,b_,c_]->PauliSigma[a,b,c]/2, FSU2L[i_,j_,k_]:> I Eps[i,j,k]}
+  },
+  SU3C == {
+    Abelian           -> False,
+    CouplingConstant  -> GS,
+    GaugeBoson        -> G,
+    StructureConstant -> f,
+    Representations   -> {T,Colour},
+    SymmetricTensor   -> dSUN
+  }
+};
+
+
+(* ************************** *)
+(* Indices *)
+(* ************************** *)
+
+IndexRange[Index[SU2W      ]] = Unfold[Range[3]];
+IndexRange[Index[SU2D      ]] = Unfold[Range[2]];
+IndexRange[Index[Gluon     ]] = NoUnfold[Range[8]];
+IndexRange[Index[Colour    ]] = NoUnfold[Range[3]];
+IndexRange[Index[Generation]] = Range[3];
+
+IndexStyle[SU2W,       j];
+IndexStyle[SU2D,       k];
+IndexStyle[Gluon,      a];
+IndexStyle[Colour,     m];
+IndexStyle[Generation, f];
+
+
+
+(* ************************** *)
+(* Particle classes *)
+(* ************************** *)
+M$ClassesDescription = {
+
+(* Gauge bosons: physical vector fields *)
+  V[1] == {
+    ClassName       -> A,
+    SelfConjugate   -> True,
+    Mass            -> 0,
+    Width           -> 0,
+    ParticleName    -> "A",
+    PDG             -> 22,
+    PropagatorLabel -> "A",
+    PropagatorType  -> W,
+    PropagatorArrow -> None,
+    FullName        -> "Photon"
+  },
+  V[2] == {
+    ClassName       -> Z,
+    SelfConjugate   -> True,
+    Mass            -> {MZ, 91.1876},
+    Width           -> {GAMZ, 2.4952},
+    ParticleName    -> "Z",
+    PDG             -> 23,
+    PropagatorLabel -> "Z",
+    PropagatorType  -> Sine,
+    PropagatorArrow -> None,
+    FullName        -> "Z"
+  },
+  V[3] == {
+    ClassName        -> W,
+    SelfConjugate    -> False,
+    Mass             -> {MW, 80.379},
+    Width            -> {GAMW, 2.085},
+    ParticleName     -> "W+",
+    AntiParticleName -> "W-",
+    QuantumNumbers   -> {Q -> 1},
+    PDG              -> 24,
+    PropagatorLabel  -> "W",
+    PropagatorType   -> Sine,
+    PropagatorArrow  -> Forward,
+    FullName         -> "W"
+  },
+  V[4] == {
+    ClassName        -> G,
+    SelfConjugate    -> True,
+    Indices          -> {Index[Gluon]},
+    Mass             -> 0,
+    Width            -> 0,
+    ParticleName     -> "g",
+    PDG              -> 21,
+    PropagatorLabel  -> "g",
+    PropagatorType   -> C,
+    PropagatorArrow  -> None,
+    FullName         -> "G"
+  },
+
+(* Fermions: physical fields *)
+  F[1] == {
+    ClassName        -> vl,
+    ClassMembers     -> {ve,vm,vt},
+    Indices          -> {Index[Generation]},
+    FlavorIndex      -> Generation,
+    SelfConjugate    -> False,
+    Mass             -> {mvdiag, {MVE,0}, {MVM,0}, {MVT,0}},
+    Width            -> 0,
+    QuantumNumbers   -> {LeptonNumber -> 1},
+    PropagatorLabel  -> {"v", "ve", "vm", "vt"} ,
+    PropagatorType   -> S,
+    PropagatorArrow  -> Forward,
+    PDG              -> {12,14,16},
+    ParticleName     -> {"ve","vm","vt"},
+    AntiParticleName -> {"ve~","vm~","vt~"},
+    FullName         -> {"Electron-neutrino", "Mu-neutrino", "Tau-neutrino"}
+  },
+  F[2] == {
+    ClassName        -> l,
+    ClassMembers     -> {e, mu, ta},
+    Indices          -> {Index[Generation]},
+    FlavorIndex      -> Generation,
+    SelfConjugate    -> False,
+    Mass             -> {mldiag, {MLE,0.00051099895}, {MLM,0.1056583755}, {MLT,1.77686}},
+    Width            -> {WL, {WLE,0}, {WLM,0}, {WLT,2.25 10^-12}},
+    QuantumNumbers   -> {Q -> -1, LeptonNumber -> 1},
+    PropagatorLabel  -> {"l", "e", "mu", "ta"},
+    PropagatorType   -> Straight,
+    PropagatorArrow  -> Forward,
+    PDG              -> {11, 13, 15},
+    ParticleName     -> {"e-", "mu-", "ta-"},
+    AntiParticleName -> {"e+", "mu+", "ta+"},
+    FullName         -> {"Electron", "Muon", "Tau"}
+  },
+  F[3] == {
+    ClassName        -> uq,
+    ClassMembers     -> {u, c, t},
+    Indices          -> {Index[Generation], Index[Colour]},
+    FlavorIndex      -> Generation,
+    SelfConjugate    -> False,
+    Mass             -> {mudiag, {MQU,2.55 10^-3}, {MQC,1.27}, {MQT,172.76}},
+    Width            -> {WU, {WQU,0}, {WQC,0}, {WQT,1.35}},
+    QuantumNumbers   -> {Q -> 2/3},
+    PropagatorLabel  -> {"uq", "u", "c", "t"},
+    PropagatorType   -> Straight,
+    PropagatorArrow  -> Forward,
+    PDG              -> {2, 4, 6},
+    ParticleName     -> {"u",  "c",  "t" },
+    AntiParticleName -> {"u~", "c~", "t~"},
+    FullName         -> {"u-quark", "c-quark", "t-quark"}
+  },
+  F[4] == {
+    ClassName        -> dq,
+    ClassMembers     -> {d, s, b},
+    Indices          -> {Index[Generation], Index[Colour]},
+    FlavorIndex      -> Generation,
+    SelfConjugate    -> False,
+    Mass             -> {mddiag, {MQD,5.04 10^-3}, {MQS,0.101}, {MQB,4.7}},
+    Width            -> {WD, {WQD,0}, {WQS,0}, {WQB,0}},
+    QuantumNumbers   -> {Q -> -1/3},
+    PropagatorLabel  -> {"dq", "d", "s", "b"},
+    PropagatorType   -> Straight,
+    PropagatorArrow  -> Forward,
+    PDG              -> {1,3,5},
+    ParticleName     -> {"d",  "s",  "b" },
+    AntiParticleName -> {"d~", "s~", "b~"},
+    FullName         -> {"d-quark", "s-quark", "b-quark"}
+  },
+
+(* Higgs: physical scalar *)
+  S[1] == {
+    ClassName       -> H,
+    SelfConjugate   -> True,
+    Mass            -> {MH,125.35},
+    Width           -> {GAMH,0.00575},
+    PropagatorLabel -> "H",
+    PropagatorType  -> D,
+    PropagatorArrow -> None,
+    PDG             -> 25,
+    ParticleName    -> "H",
+    FullName        -> "H"
+  },
+
+(* Goldstone fields  *)
+  S[2] == {
+    ClassName       -> G0,
+    SelfConjugate   -> True,
+    Mass            -> {MG0,91.1876},
+    Goldstone       -> Z,
+    PropagatorLabel -> "G0",
+    PropagatorType  -> D,
+    PropagatorArrow -> None,
+    PDG             -> 250,
+    ParticleName    -> "G0",
+    FullName        -> "G0"
+  },
+  S[3] == {
+    ClassName        -> GP,
+    SelfConjugate    -> False,
+    Mass             -> {MGP,80.379},
+    Goldstone        -> W,
+    QuantumNumbers   -> {Q -> 1},
+    PropagatorLabel  -> "GP",
+    PropagatorType   -> D,
+    PropagatorArrow  -> None,
+    PDG              -> 251,
+    ParticleName     -> "G+",
+    AntiParticleName -> "G-",
+    FullName         -> "GP"
+  },
+
+(* Ghosts: related to physical gauge bosons *)
+  U[1] == {
+    ClassName       -> ghA,
+    SelfConjugate   -> False,
+    Mass            -> 0,
+    Ghost           -> A,
+    QuantumNumbers  -> {GhostNumber -> 1},
+    PropagatorLabel -> "\[Eta]A",
+    PropagatorType  -> GhostDash,
+    PropagatorArrow -> Forward
+  },
+  U[2] == {
+    ClassName       -> ghZ,
+    SelfConjugate   -> False,
+    Mass            -> {MgZ,91.1876},
+    Ghost           -> Z,
+    QuantumNumbers  -> {GhostNumber -> 1},
+    PropagatorLabel -> "\[Eta]Z",
+    PropagatorType  -> GhostDash,
+    PropagatorArrow -> Forward
+  },
+  U[31] == {
+    ClassName       -> ghWp,
+    SelfConjugate   -> False,
+    Ghost           -> W,
+    QuantumNumbers  -> {GhostNumber -> 1, Q -> 1},
+    Mass            -> {MgW,80.379},
+    PropagatorLabel -> "\[Eta]Wp",
+    PropagatorType  -> GhostDash,
+    PropagatorArrow -> Forward
+  },
+  U[32] == {
+    ClassName       -> ghWm,
+    SelfConjugate   -> False,
+    Mass            -> {MgW,80.379},
+    Ghost           -> Wbar,
+    QuantumNumbers  -> {GhostNumber -> 1, Q -> -1},
+    PropagatorLabel -> "\[Eta]Wm",
+    PropagatorType  -> GhostDash,
+    PropagatorArrow -> Forward
+  },
+  U[4] == {
+    ClassName       -> ghG,
+    SelfConjugate   -> False,
+    Mass            -> 0,
+    Indices         -> {Index[Gluon]},
+    Ghost           -> G,
+    QuantumNumbers  ->{GhostNumber -> 1},
+    PropagatorLabel -> "\[Eta]G",
+    PropagatorType  -> GhostDash,
+    PropagatorArrow -> Forward
+  }
+
+};
+
+
+(* ************************** *)
+(* *****     Gauge      ***** *)
+(* *****   Parameters   ***** *)
+(* *****   (FeynArts)   ***** *)
+(* ************************** *)
+
+GaugeXi[ V[1]  ] = GaugeXi[A];
+GaugeXi[ V[2]  ] = GaugeXi[Z];
+GaugeXi[ V[3]  ] = GaugeXi[W];
+GaugeXi[ V[4]  ] = GaugeXi[G];
+GaugeXi[ S[1]  ] = 1;
+GaugeXi[ S[2]  ] = GaugeXi[Z];
+GaugeXi[ S[3]  ] = GaugeXi[W];
+GaugeXi[ U[1]  ] = GaugeXi[A];
+GaugeXi[ U[2]  ] = GaugeXi[Z];
+GaugeXi[ U[31] ] = GaugeXi[W];
+GaugeXi[ U[32] ] = GaugeXi[W];
+GaugeXi[ U[4]  ] = GaugeXi[G];
+
+

@@ -1,0 +1,31 @@
+(* SmeftFR v2.0 package *)
+(* psi^2 phi^3 class operators *)
+
+
+LQephi := Module[{sp,ii,jj,ff1,ff2,aux},
+
+aux = Phibar[jj] Phi[jj] LLbar[sp,ii,ff1].lR[sp,ff2] Phi[ii];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ephi"][ff1,ff2] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+LQuphi := Module[{sp,ii,jj,kk,ff1,ff2,cc,aux},
+
+aux = Phibar[jj] Phi[jj] QLbar[sp,ii,ff1,cc].uR[sp,ff2,cc] Eps[ii,kk] HC[Phi[kk]];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "uphi"][ff1,ff2] aux, FlavorExpand->{SU2D} ];
+
+aux  + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+LQdphi := Module[{sp,ii,jj,ff1,ff2,cc,aux},
+
+aux = Phibar[jj] Phi[jj] QLbar[sp,ii,ff1,cc].dR[sp,ff2,cc] Phi[ii];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "dphi"][ff1,ff2] aux, FlavorExpand->{SU2D} ];
+
+aux  + HC[aux] /.SMEFTGaugeRules
+];
+

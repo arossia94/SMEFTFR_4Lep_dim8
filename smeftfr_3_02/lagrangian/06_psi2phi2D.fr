@@ -1,0 +1,84 @@
+(* SmeftFR v2.0 package *)
+(* psi^2 phi^2 D class operators *)
+
+
+LQphil1 := Module[{sp1,sp2,ii,jj,si,nu,ff1,ff2,aux},
+
+aux = I (Phibar[jj] DC[Phi[jj],si] - DC[Phibar[jj],si] Phi[jj]) LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phil1"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+LQphil3 := Module[{sp1,sp2,ii,jj,ll,nn,m,si,ff1,ff2,aux},
+
+aux = I 2 Ta[m,ii,jj] (Phibar[ii] DC[Phi[jj],si] - DC[Phibar[ii],si] Phi[jj]) LLbar[sp1,ll,ff1].LL[sp2,nn,ff2] 2 Ta[m,ll,nn] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phil3"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+LQphie := Module[{sp1,sp2,jj,si,ff1,ff2,aux},
+
+aux = I (Phibar[jj] DC[Phi[jj],si] - DC[Phibar[jj],si] Phi[jj]) lRbar[sp1,ff1].lR[sp2,ff2] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phie"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+
+LQphiq1 := Module[{sp1,sp2,ii,jj,si,cc,nu,ff1,ff2,aux},
+
+aux = I (Phibar[jj] DC[Phi[jj],si] - DC[Phibar[jj],si] Phi[jj]) QLbar[sp1,ii,ff1,cc].QL[sp2,ii,ff2,cc] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phiq1"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiq3 := Module[{sp1,sp2,ii,jj,ll,nn,cc,m,si,ff1,ff2,aux},
+
+aux = I (Phibar[ii] DC[Phi[jj],si] - DC[Phibar[ii],si] Phi[jj]) QLbar[sp1,ll,ff1,cc].QL[sp2,nn,ff2,cc] 2 Ta[m,ii,jj] 2 Ta[m,ll,nn] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phiq3"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiu := Module[{sp1,sp2,jj,si,nu,cc,ff1,ff2,aux},
+
+aux = I (Phibar[jj] DC[Phi[jj],si] - DC[Phibar[jj],si] Phi[jj]) uRbar[sp1,ff1,cc].uR[sp2,ff2,cc] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phiu"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+LQphid := Module[{sp1,sp2,jj,cc,si,nu,ff1,ff2,aux},
+
+aux = I (Phibar[jj] DC[Phi[jj],si] - DC[Phibar[jj],si] Phi[jj]) dRbar[sp1,ff1,cc].dR[sp2,ff2,cc] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phid"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux /. SMEFTGaugeRules
+];
+
+
+
+
+LQphiud := Module[{sp1,sp2,ii,jj,kk,cc,si,nu,ff1,ff2,aux},
+
+aux = I Eps[jj,kk] HC[Phibar[kk]] DC[Phi[jj],si] uRbar[sp1,ff1,cc].dR[sp2,ff2,cc] Ga[si,sp1,sp2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "phiud"][ff1,ff2] aux, FlavorExpand->{SU2W,SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+

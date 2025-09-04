@@ -1,0 +1,75 @@
+(* SmeftFR v2.0 package *)
+(* 4-fermion operators with four right fields, (Rbar R)(Rbar R) *)
+
+LQee := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,nu,aux},
+
+aux = (lRbar[sp1,ff1].lR[sp2,ff2]).(lRbar[sp3,ff3].lR[sp4,ff4]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ee"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQuu := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,cc,dd,nu,aux},
+
+aux = (uRbar[sp1,ff1,cc].uR[sp2,ff2,cc]).(uRbar[sp3,ff3,dd].uR[sp4,ff4,dd]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "uu"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQdd := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,cc,dd,nu,aux},
+
+aux = (dRbar[sp1,ff1,cc].dR[sp2,ff2,cc]).(dRbar[sp3,ff3,dd].dR[sp4,ff4,dd]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "dd"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQeu := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,cc,nu,aux},
+
+aux = (lRbar[sp1,ff1].lR[sp2,ff2]).(uRbar[sp3,ff3,cc].uR[sp4,ff4,cc]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "eu"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+
+LQed := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,cc,nu,aux},
+
+aux = (lRbar[sp1,ff1].lR[sp2,ff2]).(dRbar[sp3,ff3,cc].dR[sp4,ff4,cc]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ed"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+
+LQud1 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,cc,dd,nu,aux},
+
+aux = (uRbar[sp1,ff1,cc].uR[sp2,ff2,cc]).(dRbar[sp3,ff3,dd].dR[sp4,ff4,dd]) Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ud1"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+
+LQud8 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,ii1,ii2,jj1,jj2,a,nu,aa1,aa2,bb1,bb2,aux},
+
+aux = (uRbar[sp1,ff1,aa1].uR[sp2,ff2,aa2]).(dRbar[sp3,ff3,bb1].dR[sp4,ff4,bb2]) T[a,aa1,aa2] T[a,bb1,bb2] Ga[nu,sp1,sp2] Ga[nu,sp3,sp4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ud8"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux
+];
+
+
+

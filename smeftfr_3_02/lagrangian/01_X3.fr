@@ -1,0 +1,38 @@
+(* SmeftFR v2.0 package *)
+(* X^3 class operators *)
+
+
+LQG := Module[{mu,nu,ro,aa,bb,cc,aux},
+
+aux = f[aa,bb,cc] FS[Gl,mu,nu,aa] FS[Gl,nu,ro,bb] FS[Gl,ro,mu,cc];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "G" ] aux ]
+];
+
+
+LQGtilde := Module[{mu,nu,ro,al,be,aa,bb,cc,aux},
+
+aux = f[aa,bb,cc] Eps[mu,nu,al,be]/2 HC[FS[Gl,al,be,aa]] FS[Gl,nu,ro,bb] FS[Gl,ro,mu,cc];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Gtilde"] aux ]
+];
+
+
+LQW := Module[{ii,jj,kk,mu,nu,ro,al,be,aux},
+
+aux = Eps[ii,jj,kk] FS[Wi,mu,nu,ii] FS[Wi,nu,ro,jj] FS[Wi,ro,mu,kk];
+aux = ExpandIndices[ aux, FlavorExpand->SU2W ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "W"] ] aux
+];
+
+
+
+LQWtilde := Module[{ii,jj,kk,mu,nu,ro,aux},
+
+aux = Eps[ii,jj,kk] Eps[mu,nu,al,be]/2 HC[FS[Wi,al,be,ii]] FS[Wi,nu,ro,jj] FS[Wi,ro,mu,kk];
+aux = ExpandIndices[ aux , FlavorExpand->SU2W ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Wtilde"] ]  aux
+];
+

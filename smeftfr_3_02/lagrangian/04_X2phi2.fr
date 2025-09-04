@@ -1,0 +1,83 @@
+(* SmeftFR v2.0 package *)
+(* X^2 phi^2 class operators *)
+
+
+LQphiG := Module[{ii,mu,nu,a,aux},
+
+aux = Phibar[ii] Phi[ii] FS[Gl,mu,nu,a] FS[Gl,mu,nu,a];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiG"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiGtilde := Module[{ii,mu,nu,al,be,a,aux},
+
+aux = Phibar[ii] Phi[ii] Eps[mu,nu,al,be]/2 HC[FS[Gl,al,be,a]] FS[Gl,mu,nu,a];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiGtilde"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiW := Module[{ii,mu,nu,ll,aux},
+
+aux = Phibar[ii] Phi[ii] FS[Wi,mu,nu,ll] FS[Wi,mu,nu,ll];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiW"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiWtilde := Module[{ii,mu,nu,al,be,ll,aux},
+
+aux = Phibar[ii] Phi[ii] Eps[mu,nu,al,be]/2 HC[FS[Wi,al,be,ll]] FS[Wi,mu,nu,ll];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiWtilde"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiB := Module[{ii,mu,nu,aux},
+
+aux = Phibar[ii] Phi[ii] FS[B,mu,nu] FS[B,mu,nu];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiB"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiBtilde := Module[{ii,mu,nu,al,be,aux},
+
+aux = Phibar[ii] Phi[ii] Eps[mu,nu,al,be]/2 HC[FS[B,al,be]] FS[B,mu,nu];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiBtilde"] ] aux /.SMEFTGaugeRules
+];
+
+
+
+LQphiWB := Module[{ii,jj,mu,nu,ll,aux},
+
+aux = Phibar[ii] 2 Ta[ll,ii,jj] Phi[jj] FS[Wi,mu,nu,ll] FS[B,mu,nu];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiWB"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiWtildeB := Module[{ii,jj,ll,mu,nu,al,be,aux},
+
+aux = Phibar[ii] 2 Ta[ll,ii,jj] Phi[jj] Eps[mu,nu,al,be]/2 HC[FS[Wi,al,be,ll]] FS[B,mu,nu];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiWtildeB"] ] aux /. SMEFTGaugeRules
+];
+
+

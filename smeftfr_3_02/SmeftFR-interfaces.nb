@@ -1,0 +1,494 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     20918,        486]
+NotebookOptionsPosition[     17890,        431]
+NotebookOutlinePosition[     18549,        451]
+CellTagsIndexPosition[     18506,        448]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "SmeftFR  v3.0\n ",
+ StyleBox["Feynman rule generator in SMEFT",
+  FontSize->36],
+ " \n",
+ StyleBox["Interfaces - Latex, UFO, FeynArts and WCxf \n", "Section",
+  FontColor->GrayLevel[0]],
+ StyleBox["SmeftFR-init.nb should be executed prior to this code!", 
+  "Subsection",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1, 0.5, 0]]
+}], "Title",
+ CellChangeTimes->{{3.4126590568924417`*^9, 3.412659075768538*^9}, {
+   3.423416384793591*^9, 3.423416395796236*^9}, {3.4234174151520243`*^9, 
+   3.423417420076274*^9}, {3.760600931373452*^9, 3.760600938564866*^9}, {
+   3.760600980116218*^9, 3.7606010342731333`*^9}, {3.760601110546075*^9, 
+   3.7606011157457647`*^9}, {3.760965916750543*^9, 3.7609659226892*^9}, {
+   3.760969333036388*^9, 3.760969456832159*^9}, {3.76096949468789*^9, 
+   3.760969497616509*^9}, {3.760969597787758*^9, 3.7609696028087606`*^9}, {
+   3.762706903793747*^9, 3.762706914691828*^9}, {3.7627070983484364`*^9, 
+   3.7627071199679213`*^9}, {3.762707162573914*^9, 3.762707184384281*^9}, {
+   3.776590046742124*^9, 3.776590046861511*^9}, {3.8812487541885967`*^9, 
+   3.881248754597007*^9}, {3.8812553107992353`*^9, 3.881255416708694*^9}, 
+   3.891268734640497*^9},
+ TextAlignment->Center,ExpressionUUID->"68b8f4ae-1b50-45fc-8fb7-0768ce1acaea"],
+
+Cell[CellGroupData[{
+
+Cell["Set proper paths and load package", "Section",
+ CellChangeTimes->{{3.760969789646365*^9, 3.760969816962785*^9}, {
+   3.760969884414713*^9, 3.760969885436679*^9}, 3.760969946661951*^9, {
+   3.762707261100027*^9, 
+   3.762707270825543*^9}},ExpressionUUID->"d8e28858-48c3-45e1-85e5-\
+ba933fc1c3a2"],
+
+Cell[TextData[StyleBox["FeynRules and SmeftFR package installation paths \
+(edit to set your own FeynRules and SmeftFR paths):",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{
+  3.881246452759076*^9, {3.881247471826123*^9, 3.881247489542645*^9}, 
+   3.8814126979329443`*^9},ExpressionUUID->"8a85c8e5-10d8-4c2b-9e9a-\
+eedfdceec425"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Quiet", "[", 
+   RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$FeynRulesPath", " ", "=", " ", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\</home\>\"", ",", "\"\<rosiek\>\"", ",", "\"\<FeynRules\>\""}], 
+     "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SMEFT$MajorVersion", "=", "\"\<3\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"SMEFT$MinorVersion", "=", "\"\<02\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"SMEFT$Path", " ", "=", " ", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"$FeynRulesPath", ",", "\"\<Models\>\"", ",", 
+      RowBox[{
+      "\"\<SMEFT_\>\"", "<>", "SMEFT$MajorVersion", "<>", "\"\<_\>\"", "<>", 
+       "SMEFT$MinorVersion"}]}], "}"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.4126590568924417`*^9, 3.412659075768538*^9}, {
+   3.423416384793591*^9, 3.423416395796236*^9}, {3.4234174151520243`*^9, 
+   3.423417420076274*^9}, {3.760600931373452*^9, 3.760600938564866*^9}, {
+   3.760600980116218*^9, 3.7606010342731333`*^9}, {3.760601110546075*^9, 
+   3.7606011157457647`*^9}, {3.760965916750543*^9, 3.7609659226892*^9}, {
+   3.760969333036388*^9, 3.760969352713992*^9}, {3.762707281334773*^9, 
+   3.7627073105310173`*^9}, 3.762708923188611*^9, {3.762709180307948*^9, 
+   3.762709190912554*^9}, {3.7765900540806026`*^9, 3.7765900542027483`*^9}, {
+   3.8812554331324673`*^9, 3.881255451034553*^9}, {3.881256928560019*^9, 
+   3.881256933437112*^9}, {3.881418525046124*^9, 3.8814185305794487`*^9}, {
+   3.883320440895702*^9, 3.883320450009613*^9}, 3.8833222406986303`*^9, {
+   3.891268738176902*^9, 3.8912687382568502`*^9}, {3.899037181174905*^9, 
+   3.899037181233849*^9}},ExpressionUUID->"eec34924-11ca-48a1-b401-\
+77b9b8b2dc0f"],
+
+Cell[TextData[StyleBox["Load FeynRules and SMEFT packages",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.881246428549148*^9, 
+  3.8812464341277122`*^9}},ExpressionUUID->"40c46ebd-80c9-4851-b0a9-\
+68634cfa7b64"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"$FeynRulesPath", ",", "\"\<FeynRules.m\>\""}], "}"}], "]"}], 
+   "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "SMEFT$Path", ",", "\"\<code\>\"", ",", "\"\<smeft_package.m\>\""}], 
+     "}"}], "]"}], "]"}], ";"}], "\n"}], "Input",
+ CellChangeTimes->{{3.760601085197588*^9, 3.760601106029333*^9}, 
+   3.762707299234066*^9, {3.881255446434252*^9, 3.881255447851832*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"665e8197-75cc-4cc9-9080-ac98cfaa0526"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Reload mass basis Lagrangian, initialize model", "Section",
+ CellChangeTimes->{{3.412621711134922*^9, 3.412621715160161*^9}, {
+   3.760972321445037*^9, 3.760972327069193*^9}, 3.762707249295392*^9, {
+   3.762707389702379*^9, 
+   3.762707422269435*^9}},ExpressionUUID->"f9cfb12d-ae19-49de-8c08-\
+984ac8e4a487"],
+
+Cell[TextData[{
+ StyleBox["After calling ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox["SMEFTInitializeMB",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[0, 0, 1]],
+ StyleBox[", the mass basis model files are read in and the mass basis \
+Lagrangian is stored in a global variable  ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox["SMEFT$MBLagrangian",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1, 0.5, 0]],
+ StyleBox[" for further use by interface routines. ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"]
+}], "Text",
+ CellChangeTimes->{{3.760972759432354*^9, 3.760972790877749*^9}, {
+   3.760972821941867*^9, 3.7609728408537483`*^9}, {3.760973081141934*^9, 
+   3.760973112813623*^9}, {3.762707442313759*^9, 3.7627074593100023`*^9}, 
+   3.762707505483914*^9, {3.88125579635572*^9, 3.881255806924841*^9}, {
+   3.881256140670764*^9, 3.8812561434947243`*^9}, 
+   3.883320574480946*^9},ExpressionUUID->"87582598-905f-4dbf-910e-\
+5909e0344260"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CPUTime", "=", 
+    RowBox[{"TimeUsed", "[", "]"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"initialize", " ", "time", " ", "counter"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.883320672655781*^9, 3.883320692238352*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"90433bf3-903f-40de-a6cf-e728bf57d633"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SMEFTInitializeMB", "[", 
+   RowBox[{
+    RowBox[{"Expansion", "\[Rule]", "\"\<user\>\""}], " ", ",", "       ", 
+    "\[IndentingNewLine]", "                                    ", 
+    RowBox[{"Include4Fermion", "\[Rule]", "True"}], ",", 
+    "\[IndentingNewLine]", "                                    ", 
+    RowBox[{"IncludeBL4Fermion", "\[Rule]", "False"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<Mass basis Lagrangian loaded, time = \>\"", ",", 
+    RowBox[{
+     RowBox[{"TimeUsed", "[", "]"}], "-", "CPUTime"}]}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.760972627004978*^9, 3.760972634631793*^9}, {
+   3.760972666176269*^9, 3.760972727824284*^9}, 3.760972844423047*^9, 
+   3.7627074309709663`*^9, {3.881662753422333*^9, 3.881662814242976*^9}, {
+   3.881666150221899*^9, 3.881666152680224*^9}, {3.881667094347823*^9, 
+   3.881667096814221*^9}, {3.8816682028585157`*^9, 3.88166820655851*^9}, {
+   3.88332059054139*^9, 3.883320648209869*^9}, {3.883320730222414*^9, 
+   3.883320733088607*^9}, {3.883322195063754*^9, 3.8833221953942747`*^9}, 
+   3.883322274419084*^9},
+ CellLabel->"In[9]:=",ExpressionUUID->"bafc84c2-d2f0-4308-8f4f-a78bf81b00f5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WCxf input and output", "Section",
+ CellChangeTimes->{{3.760979059207157*^9, 3.760979078821291*^9}, {
+  3.762708393646049*^9, 
+  3.7627084038739653`*^9}},ExpressionUUID->"d80012ba-c011-43d3-be49-\
+5239e1f4a423"],
+
+Cell[TextData[StyleBox["Exporting numerical values of Wilson coefficients \
+from Feynrules model file to the file in the WCxf format is performed by the \
+function:",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.760973239573413*^9, 3.760973286174428*^9}, {
+  3.881256174757792*^9, 3.881256176176968*^9}, {3.883320760854899*^9, 
+  3.883320813357709*^9}},ExpressionUUID->"85a281df-0478-4203-81e0-\
+a27c0da6a0f4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SMEFTToWCXF", "[", " ", 
+   RowBox[{
+    RowBox[{"FileNameJoin", "[", " ", 
+     RowBox[{"{", " ", 
+      RowBox[{
+      "SMEFT$Path", ",", " ", "\"\<output\>\"", ",", " ", 
+       "\"\<smeft_par_MB.fr\>\""}], " ", "}"}], " ", "]"}], ",", "\n", 
+    "                            ", 
+    RowBox[{"FileNameJoin", "[", " ", 
+     RowBox[{"{", " ", 
+      RowBox[{
+      "SMEFT$Path", ",", " ", "\"\<output\>\"", ",", " ", 
+       "\"\<smeft_wcxf_MB.json\>\""}], " ", "}"}], " ", "]"}]}], "  ", "]"}], 
+  ";", 
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<Parameters stored in WCXF file, time = \>\"", ",", 
+    RowBox[{
+     RowBox[{"TimeUsed", "[", "]"}], "-", "CPUTime"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.760973000950308*^9, 3.7609730693592367`*^9}, {
+   3.7632021140746317`*^9, 3.763202123963759*^9}, {3.763399179175972*^9, 
+   3.7633991821287537`*^9}, {3.881662951371203*^9, 3.8816629535301847`*^9}, {
+   3.883320785549645*^9, 3.8833207883075857`*^9}, {3.883320826504039*^9, 
+   3.883320829771986*^9}, {3.883321272895563*^9, 3.8833212828336*^9}, 
+   3.883321747505755*^9, {3.88332219841422*^9, 3.88332219861197*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"6fe2c640-23be-42c2-acad-b47fa501c2a1"],
+
+Cell[TextData[StyleBox["The created file can be used to transfer numerical \
+values of Wilson coefficients to other codes supporting WCxf format. \
+Conversely,  files in WCxf format can be translated to FeynRules parameter \
+files using routine WCXFToSMEFT[\[OpenCurlyDoubleQuote]wcxf_file.json\
+\[CloseCurlyDoubleQuote],\[CloseCurlyDoubleQuote]smeft_file.fr\
+\[CloseCurlyDoubleQuote]] - see manual for more details and available \
+options. ",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.7609733274470987`*^9, 3.760973331789826*^9}, {
+  3.760973489597457*^9, 3.760973536923071*^9}, {3.760973664852585*^9, 
+  3.760973692226741*^9}, {3.762707536842198*^9, 3.762707536919984*^9}, {
+  3.7627076272896833`*^9, 3.76270767420958*^9}, {3.762707756283785*^9, 
+  3.76270776087564*^9}},ExpressionUUID->"7788d64f-fa91-40b0-a5bf-\
+705e767276d0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Latex  output", "Section",
+ CellChangeTimes->{{3.7609737527084103`*^9, 3.760973780074239*^9}, {
+  3.760973816435884*^9, 
+  3.760973818585753*^9}},ExpressionUUID->"dfbd88f0-2a19-48e8-989c-\
+8bf42c78e17b"],
+
+Cell[TextData[StyleBox["Latex output  is generated by the function:",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.881412867088519*^9, 3.881412879919202*^9}, 
+   3.883321893774212*^9, {3.883321933901012*^9, 
+   3.883321966061157*^9}},ExpressionUUID->"1ede1e1f-292b-4857-a81d-\
+e44f6a2f1100"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SMEFTToLatex", "[", " ", 
+   RowBox[{"Expansion", "\[Rule]", "\"\<smeft\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<Latex output generated, time = \>\"", ",", 
+    RowBox[{
+     RowBox[{"TimeUsed", "[", "]"}], "-", "CPUTime"}]}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.88166319182242*^9, 3.881663196429926*^9}, {
+  3.881663859673572*^9, 3.881663861349543*^9}, {3.883321318047627*^9, 
+  3.883321331684214*^9}, {3.883321836852766*^9, 3.883321840251959*^9}, {
+  3.883322204225955*^9, 3.883322204468101*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"5a39cbf1-3e8e-4c6d-baf2-c37541eeda65"],
+
+Cell[TextData[{
+ StyleBox["SmeftFR can create a Latex file with the Feynman diagrams drawn \
+using \[OpenCurlyDoubleQuote]axodraw.sty\[CloseCurlyDoubleQuote].  The tex \
+file name is generated as  output/latex/smeft_feynman_rules.tex. To compile \
+it, one needs to produce intermediate Postscript file by executing the \
+following (or equivalent)  comands in terminal:",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox["\nlatex     smeft_feynman_rules.tex\ndvips    \
+smeft_feynman_rules.dvi\nps2pdf smeft_feynman_rules.ps \n\n",
+  FontSlant->"Italic"],
+ StyleBox["Note: Latex output contains only terms up to maximal dimension-6 \
+(excluding very long formulae with 5- and 6-tuple gluon vertices which are \
+also not included in the Latex output ). Higher order terms are in most cases \
+too complicated for printed output, if necessary they can be displayed on the \
+screen in the Mathematica format as illustrated above.",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1., 0., 0.]]
+}], "Text",
+ CellChangeTimes->{{3.760975593991325*^9, 3.760975706267427*^9}, {
+   3.7609757472042847`*^9, 3.760975773450438*^9}, {3.760975980310062*^9, 
+   3.760976049451584*^9}, {3.7609761550393543`*^9, 3.760976218347515*^9}, {
+   3.762708016521484*^9, 3.762708088553321*^9}, {3.8812564561640577`*^9, 
+   3.881256480988315*^9}, {3.8812565290389643`*^9, 3.881256552023312*^9}, {
+   3.8814128517944727`*^9, 3.881412853694861*^9}, {3.881412902998892*^9, 
+   3.8814129057484417`*^9}, 3.8814129362907743`*^9, {3.881663336719599*^9, 
+   3.8816633438775377`*^9}, {3.883321398045978*^9, 3.883321661631688*^9}, {
+   3.883322939232603*^9, 3.883322945262951*^9}, {3.883329749648419*^9, 
+   3.883329750802412*^9}},ExpressionUUID->"1fc1a5f9-bcd0-474b-bc09-\
+2c0fda3fa36f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["UFO output", "Section",
+ CellChangeTimes->{{3.760978737165659*^9, 
+  3.760978747875888*^9}},ExpressionUUID->"9816b728-95c0-47a7-84b8-\
+025adb1cf3e3"],
+
+Cell[TextData[StyleBox["Output in UFO format is generated by the function:",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.8814127406237783`*^9, 3.88141276173447*^9}, 
+   3.88332189668011*^9, {3.8833219738733807`*^9, 
+   3.883321998541544*^9}},ExpressionUUID->"314c1d3b-16f5-4cba-88e6-\
+644e65508d2f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SMEFTToUFO", "[", 
+   RowBox[{"SMEFT$MBLagrangian", ",", " ", 
+    RowBox[{"Output", "\[Rule]", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+       "SMEFT$Path", ",", " ", "\"\<output\>\"", ",", " ", "\"\<UFO\>\""}], 
+       "}"}], "]"}]}], ",", " ", 
+    RowBox[{"CorrectIO", " ", "->", " ", "True"}]}], "]"}], ";", 
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<UFO output generated, time = \>\"", ",", 
+    RowBox[{
+     RowBox[{"TimeUsed", "[", "]"}], "-", "CPUTime"}]}], "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.760978760044993*^9, 3.760978873333323*^9}, {
+   3.760978958155004*^9, 3.7609789616293793`*^9}, {3.762708124696856*^9, 
+   3.762708126907357*^9}, 3.881663413410572*^9, {3.881663995931387*^9, 
+   3.8816640228930807`*^9}, 3.883321867658449*^9, {3.883322209046298*^9, 
+   3.883322209246273*^9}, 3.88332228417498*^9, {3.8833331345793552`*^9, 
+   3.883333138221067*^9}, {3.883333495818619*^9, 3.8833334988742933`*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"f5d0c8bf-cc2e-4102-b67a-a962c7781f09"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["FeynArts output", "Section",
+ CellChangeTimes->{{3.760979059207157*^9, 
+  3.760979078821291*^9}},ExpressionUUID->"8626feec-09ca-4ecd-8988-\
+76ca0c800939"],
+
+Cell[TextData[StyleBox["FeynArts output is produce by native FeynRules \
+interface :",
+ FontWeight->"Bold",
+ FontSlant->"Italic"]], "Text",
+ CellChangeTimes->{{3.881412767896531*^9, 3.881412778985001*^9}, {
+  3.883322003831641*^9, 
+  3.883322029345986*^9}},ExpressionUUID->"42b8da87-1fcb-4f36-9d89-\
+4def95ddc43d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"WriteFeynArtsOutput", "[", 
+   RowBox[{"SMEFT$MBLagrangian", ",", " ", 
+    RowBox[{"Output", " ", "->", " ", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+       "SMEFT$Path", ",", " ", "\"\<output\>\"", ",", " ", "\"\<FeynArts\>\"",
+         ",", "\"\<FeynArts\>\""}], "}"}], "]"}]}]}], "]"}], ";", 
+  RowBox[{"Print", "[", 
+   RowBox[{
+   "\"\<Vertices stored in FeynArts format in directory\>\"", ",", " ", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{
+        "SMEFT$Path", ",", " ", "\"\<output\>\"", ",", " ", 
+         "\"\<FeynArts\>\""}], "}"}], "]"}], ",", " ", "Bold"}], "]"}]}], 
+   "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<Total CPU time used = \>\"", ",", " ", 
+    RowBox[{
+     RowBox[{"TimeUsed", "[", "]"}], " ", "-", " ", "CPUTime"}]}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.760979082452731*^9, 3.760979125856543*^9}, {
+   3.760979167833156*^9, 3.760979197980172*^9}, 3.760980246010791*^9, {
+   3.7609813247143173`*^9, 3.7609813326193132`*^9}, {3.7627081324967203`*^9, 
+   3.762708135287344*^9}, 3.8816640604894753`*^9, 3.8833220693496*^9, {
+   3.8833221085830708`*^9, 3.8833221092290897`*^9}, {3.8833222110459843`*^9, 
+   3.883322217532477*^9}, {3.8833326775496492`*^9, 3.883332699955398*^9}, {
+   3.88333305121294*^9, 3.883333058231977*^9}, {3.883333153917027*^9, 
+   3.883333217204381*^9}, {3.883333356845393*^9, 3.883333376564507*^9}, {
+   3.8833334259153976`*^9, 3.8833334579434147`*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"c20c91ae-fdbc-4338-bee8-0946c3c1951e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1017.75, 761.25},
+WindowMargins->{{Automatic, 7.5}, {0.75, Automatic}},
+PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
+SpellingDictionaries->{"CorrectWords"->{
+ "executed", "nb", "Interfaces", "paths", "packages", "stored", 
+  "coefficients", "files", "performed", "values", "Conversely", "Widths"}},
+FrontEndVersion->"13.3 for Linux x86 (64-bit) (June 3, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"6d70ec4a-5798-45fb-83f3-2fb73bfc1df7"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 1297, 25, 283, "Title",ExpressionUUID->"68b8f4ae-1b50-45fc-8fb7-0768ce1acaea"],
+Cell[CellGroupData[{
+Cell[1889, 51, 301, 5, 83, "Section",ExpressionUUID->"d8e28858-48c3-45e1-85e5-ba933fc1c3a2"],
+Cell[2193, 58, 357, 7, 43, "Text",ExpressionUUID->"8a85c8e5-10d8-4c2b-9e9a-eedfdceec425"],
+Cell[2553, 67, 1833, 37, 193, "Input",ExpressionUUID->"eec34924-11ca-48a1-b401-77b9b8b2dc0f"],
+Cell[4389, 106, 240, 5, 43, "Text",ExpressionUUID->"40c46ebd-80c9-4851-b0a9-68634cfa7b64"],
+Cell[4632, 113, 637, 16, 89, "Input",ExpressionUUID->"665e8197-75cc-4cc9-9080-ac98cfaa0526"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5306, 134, 314, 5, 83, "Section",ExpressionUUID->"f9cfb12d-ae19-49de-8c08-984ac8e4a487"],
+Cell[5623, 141, 1008, 26, 72, "Text",ExpressionUUID->"87582598-905f-4dbf-910e-5909e0344260"],
+Cell[6634, 169, 350, 8, 36, "Input",ExpressionUUID->"90433bf3-903f-40de-a6cf-e728bf57d633"],
+Cell[6987, 179, 1250, 24, 124, "Input",ExpressionUUID->"bafc84c2-d2f0-4308-8f4f-a78bf81b00f5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8274, 208, 217, 4, 83, "Section",ExpressionUUID->"d80012ba-c011-43d3-be49-5239e1f4a423"],
+Cell[8494, 214, 440, 8, 72, "Text",ExpressionUUID->"85a281df-0478-4203-81e0-a27c0da6a0f4"],
+Cell[8937, 224, 1238, 26, 98, "Input",ExpressionUUID->"6fe2c640-23be-42c2-acad-b47fa501c2a1"],
+Cell[10178, 252, 863, 14, 101, "Text",ExpressionUUID->"7788d64f-fa91-40b0-a5bf-705e767276d0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11078, 271, 209, 4, 83, "Section",ExpressionUUID->"dfbd88f0-2a19-48e8-989c-8bf42c78e17b"],
+Cell[11290, 277, 321, 6, 43, "Text",ExpressionUUID->"1ede1e1f-292b-4857-a81d-e44f6a2f1100"],
+Cell[11614, 285, 686, 15, 69, "Input",ExpressionUUID->"5a39cbf1-3e8e-4c6d-baf2-c37541eeda65"],
+Cell[12303, 302, 1774, 30, 331, "Text",ExpressionUUID->"1fc1a5f9-bcd0-474b-bc09-2c0fda3fa36f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14114, 337, 155, 3, 83, "Section",ExpressionUUID->"9816b728-95c0-47a7-84b8-025adb1cf3e3"],
+Cell[14272, 342, 330, 6, 43, "Text",ExpressionUUID->"314c1d3b-16f5-4cba-88e6-644e65508d2f"],
+Cell[14605, 350, 1073, 22, 98, "Input",ExpressionUUID->"f5d0c8bf-cc2e-4102-b67a-a962c7781f09"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15715, 377, 160, 3, 83, "Section",ExpressionUUID->"8626feec-09ca-4ecd-8988-76ca0c800939"],
+Cell[15878, 382, 314, 7, 43, "Text",ExpressionUUID->"42b8da87-1fcb-4f36-9d89-4def95ddc43d"],
+Cell[16195, 391, 1667, 36, 155, "Input",ExpressionUUID->"c20c91ae-fdbc-4338-bee8-0946c3c1951e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

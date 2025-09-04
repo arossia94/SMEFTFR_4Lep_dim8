@@ -1,0 +1,32 @@
+(* SmeftFR v2.0 package *)
+(* phi^6 or phi^4 D^2 class operators *)
+
+
+LQphi := Module[{ii,jj,kk,aux},
+
+aux = Phibar[ii].Phi[ii] Phibar[jj].Phi[jj] Phibar[kk].Phi[kk];
+aux = ExpandIndices[ aux, FlavorExpand->SU2D ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phi"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiBox := Module[{ii,jj,kk,mu,aux},
+
+aux = Phibar[ii] Phi[ii] del[del[Phibar[jj] Phi[jj],mu],mu];
+aux = ExpandIndices[ aux, FlavorExpand->SU2D ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiBox"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphiD := Module[{ii,jj,mu,aux},
+
+aux = HC[Phibar[ii] DC[Phi[ii],mu]] (Phibar[jj] DC[Phi[jj],mu]);
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phiD"] ] aux /. SMEFTGaugeRules
+];
+

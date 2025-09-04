@@ -1,0 +1,32 @@
+(* SmeftFR v3.0 package *)
+(* dim-8 operators from 2005.00059 - phi^4 D^4 class *)
+(* Operators: {phi4D4n1, phi4D4n2, phi4D4n3} *)
+
+LQphi4D4n1 := Module[{ii,jj,mu,nu,aux},
+
+aux = (DC[Phi8bar[ii],mu] DC[Phi8[ii],nu]) (DC[Phi8bar[jj],nu] DC[Phi8[jj],mu]) ;
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phi4D4n1"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphi4D4n2 := Module[{ii,jj,mu,nu,aux},
+
+aux = (DC[Phi8bar[ii],mu] DC[Phi8[ii],nu]) (DC[Phi8bar[jj],mu] DC[Phi8[jj],nu]) ;
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phi4D4n2"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQphi4D4n3 := Module[{ii,jj,mu,nu,aux},
+
+aux = (DC[Phi8bar[ii],mu] DC[Phi8[ii],mu]) (DC[Phi8bar[jj],nu] DC[Phi8[jj],nu]) ;
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "phi4D4n3"] ] aux /. SMEFTGaugeRules
+];
+

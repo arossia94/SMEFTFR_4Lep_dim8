@@ -1,0 +1,370 @@
+(* SmeftFR v3.0 package *)
+(* Contains definitions of SMEFT parameters in Warsaw basis *)
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+M$Parameters = {
+
+(* INTERNAL PARAMETERS *)
+
+(* field and gauge normalization factors *)
+
+(* Physical Higgs H *)
+Hnorm == {
+  ParameterType -> Internal,
+  Indices -> {},
+  ComplexParameter -> False,
+  Description -> "Physical Higgs normalization"
+},
+
+(* Neutral Goldstone G0 *)
+G0norm == {
+  ParameterType    -> Internal,
+  Indices          -> {},
+  ComplexParameter -> False,
+  Description      -> "Neutral Goldstone normalization"
+},
+
+(* Charged Goldstone GP *)
+GPnorm == {
+  ParameterType    -> Internal,
+  Indices          -> {},
+  ComplexParameter -> False,
+  Description      -> "Neutral Goldstone normalization"
+},
+
+(* Physical Z and photon *)
+AZnorm == {
+  ParameterType    -> Internal,
+  Indices          -> {SU2W,SU2W},
+  ComplexParameter -> False,
+  Description      -> "Physical Z and photon mixing matrix"
+},
+
+(* Physical W *)
+Wnorm == {
+  ParameterType -> Internal,
+  Indices -> {},
+  ComplexParameter -> False,
+  Description -> "W normalization"
+},
+
+(* Physical gluon *)
+Gnorm == {
+  ParameterType -> Internal,
+  Indices -> {},
+  ComplexParameter -> False,
+  Description -> "Gluon normalization"
+},
+
+(* g1 normalization *)
+g1norm == {
+  ParameterType -> Internal,
+  Indices -> {},
+  ComplexParameter -> False,
+  Description -> "g1 coupling normalization"
+},
+
+(* gw normalization *)
+gwnorm == {
+  ParameterType -> Internal,
+  Indices -> {},
+  ComplexParameter -> False,
+Description -> "gw coupling normalization"
+},
+
+(* gs normalization *)
+gsnorm == {
+  ParameterType -> Internal,
+  Indices -> {},
+  ComplexParameter -> False,
+  Description -> "gs coupling normalization"
+},
+
+(* initial SM couplings before redefinitions *)
+
+gw == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QED,1},
+  ComplexParameter -> False,
+  Definitions      -> {gw :> gwnorm GW},
+  TeX              -> Subscript[g,W],
+  Description      -> "Weak SU(2) coupling constant"
+},
+
+g1 == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QED,1},
+  ComplexParameter -> False,
+  Definitions      -> {g1 :> g1norm G1},
+  TeX              -> Subscript[g,1],
+  Description      -> "U(1)Y coupling constant"
+},
+
+gs == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QCD,1},
+  ComplexParameter -> False,
+  Definitions      -> {gs :> gsnorm GS},
+  TeX              -> Subscript[g,s],
+  Description      -> "Strong sU(3) coupling constant"
+},
+
+(* effective gauge coupling constants *)
+
+G1 == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QED,1},
+  ComplexParameter -> False,
+  TeX              -> Subscript[G,1],
+  Description      -> "Effective U(1)Y coupling constant"
+},
+
+GW == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QED,1},
+  ComplexParameter -> False,
+  TeX              -> Subscript[G,W],
+  Description      -> "Effective SU(2) coupling constant"
+},
+
+GS == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QCD,1},
+  ComplexParameter -> False,
+  TeX              -> Subscript[G,s],
+  Description      -> "Effective SU(3) coupling constant at the Z pole"
+},
+
+aS == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QCD,2},
+  ComplexParameter -> False,
+  TeX              -> Subscript[\[Alpha],s],
+  Description      -> "Effective alpha_s at the Z pole"
+},
+
+(* Higgs parameters *)
+
+vev == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QED,-1},
+  Description      -> "Higgs vacuum expectation value"
+},
+
+hlambda == {
+  ParameterType    -> Internal,
+  InteractionOrder -> {QED, 1},
+  ComplexParameter -> False,
+  TeX              -> \[Lambda],
+  Description      -> "Higgs quartic coupling"
+},
+
+muH == {
+  ParameterType    -> Internal,
+  ComplexParameter -> False,
+  TeX              -> \[Mu],
+  Description      -> "Coefficient of the quadratic term in the Higgs potential"
+},
+
+(* particle masses *)
+
+MW == {
+  ParameterType -> Internal,
+  ComplexParameter -> False,
+  TeX           -> Subscript[M,W],
+  Description   -> "W mass"
+},
+
+MZ == {
+  ParameterType -> Internal,
+  ComplexParameter -> False,
+  TeX           -> Subscript[M,Z],
+  Description   -> "Z mass"
+},
+
+MH == {
+  ParameterType -> Internal,
+  ComplexParameter -> False,
+  TeX           -> Subscript[M,H],
+  Description   -> "H mass"
+},
+
+(* fermion masses *)
+
+fmv == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  Definitions      -> {fmv[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+  TeX              -> Superscript[m, \[Nu]],
+  Description      -> "Neutrino masses"
+},
+
+fml == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  Definitions      -> {fml[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+  TeX              -> Superscript[m, l],
+  Description      -> "Lepton tree level pole masses"
+},
+
+fmu == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  Definitions      -> {fmu[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+  TeX              -> Superscript[m, u],
+  Description      -> "Up-type quark masses"
+},
+
+fmd == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  Definitions      -> {fmd[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
+  TeX              -> Superscript[m, d],
+  Description      -> "Down-type quark masses"
+},
+
+(* Yukawa couplings *)
+
+yl == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  ComplexParameter -> True,
+  InteractionOrder -> {QED, 1},
+  TeX              -> Superscript[y, l],
+  Description      -> "Lepton Yukawa coupling"
+},
+
+yu == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  ComplexParameter -> True,
+  InteractionOrder -> {QED, 1},
+  TeX              -> Superscript[y, u],
+  Description      -> "Up-type Yukawa coupling"
+},
+
+yd == {
+  ParameterType    -> Internal,
+  Indices          -> {Index[Generation], Index[Generation]},
+  ComplexParameter -> True,
+  InteractionOrder -> {QED, 1},
+  TeX              -> Superscript[y, d],
+  Description      -> "Down-type Yukawa coupling"
+},
+
+(* fermion fields rotations from Warsaw to mass basis *)
+
+VVL == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Left neutrino mixing matrix"
+},
+
+VLL == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Left lepton mixing matrix"
+},
+
+VLR == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Right lepton mixing matrix"
+},
+
+VUL == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Left up quark mixing matrix"
+},
+
+VUR == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Right up quark mixing matrix"
+},
+
+VDL == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Left down quark mixing matrix"
+},
+
+VDR == {
+ParameterType -> Internal,
+Indices -> {Index[Generation], Index[Generation]},
+Unitary -> True,
+ComplexParameter -> True,
+Description -> "Right down quark mixing matrix"
+},
+
+
+(* physical flavor mixing *)
+
+(* CKM matrix Kq =  VUL^+ VDL + corrections *)
+Kq == {
+  ParameterType -> Internal,
+  Indices -> {Index[Generation], Index[Generation]},
+  Unitary -> True,
+  ComplexParameter -> True,
+  TeX           -> K,
+  Description -> "CKM Matrix"
+},
+
+(* PMNS matrix Ul = VLL^+ VVL + corrections *)
+Ul == {
+  ParameterType -> Internal,
+  Indices -> {Index[Generation], Index[Generation]},
+  Unitary -> True,
+  ComplexParameter -> True,
+  TeX           -> U,
+  Description -> "PMNS Matrix"
+},
+
+(* R_xi gauge fixing parameters in mass basis *)
+
+xiW == {
+    ParameterType -> Internal,
+    ComplexParameter -> False,
+    Value            -> 1,
+    TeX           -> Subscript[\[Xi],W],
+    Description   -> "W gauge fixing parameter"
+  },
+
+xiZ == {
+    ParameterType -> Internal,
+    ComplexParameter -> False,
+    Value            -> 1,
+    TeX           -> Subscript[\[Xi],Z],
+    Description   -> "Z gauge fixing parameter"
+  },
+
+xiA == {
+    ParameterType -> Internal,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX           -> Subscript[\[Xi],A],
+    Description   -> "Photon gauge fixing parameter"
+  },
+
+xiG == {
+    ParameterType -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX           -> Subscript[\[Xi],G],
+    Description   -> "Gluon gauge fixing parameter"
+  },

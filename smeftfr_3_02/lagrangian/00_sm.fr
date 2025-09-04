@@ -1,0 +1,43 @@
+(* SmeftFR v3.0 package *)
+(* SM Lagrangian *)
+
+LGauge := Module[{mu,nu,ii,a},
+
+ExpandIndices[ - FS[B,mu,nu] FS[B,mu,nu]/4 -
+                 FS[Wi,mu,nu,ii] FS[Wi,mu,nu,ii]/4 -
+                 FS[Gl,mu,nu,a] FS[Gl,mu,nu,a]/4, FlavorExpand->SU2W ]
+]
+
+
+
+
+LFermions := Module[{mu},
+
+ExpandIndices[ I*(QLbar.Ga[mu].DC[QL, mu] + LLbar.Ga[mu].DC[LL, mu] +
+                  uRbar.Ga[mu].DC[uR, mu] + dRbar.Ga[mu].DC[dR, mu] +
+                  lRbar.Ga[mu].DC[lR, mu]), FlavorExpand -> {SU2W,SU2D} ]
+]
+
+
+
+
+LHiggs := Module[{ii,jj,mu},
+
+ExpandIndices[ DC[Phibar[ii],mu] DC[Phi[ii],mu] + muH^2 Phibar[ii] Phi[ii] -
+            hlambda/2 Phibar[ii] Phi[ii] Phibar[jj] Phi[jj],
+            FlavorExpand->{SU2W,SU2D} ] /. SMEFTGaugeRules
+]
+
+
+
+LYukawa := Module[{sp,ii,jj,cc,ff1,ff2,aux},
+
+aux = - ExpandIndices[yd[ff1, ff2] QLbar[sp, ii, ff1, cc].dR[sp, ff2, cc] Phi[ii] +
+     yl[ff1, ff2] LLbar[sp, ii, ff1].lR[sp, ff2] Phi[ii] +
+     yu[ff1, ff2] QLbar[sp, ii, ff1, cc].uR[sp, ff2, cc] Phibar[jj] Eps[ii, jj],
+     FlavorExpand -> SU2D];
+
+aux + HC[aux] /. SMEFTGaugeRules
+]
+
+

@@ -1,0 +1,52 @@
+(* SmeftFR v2.0 package *)
+(* dim 5 and 6 L and B violating operators *)
+
+LQvv := Module[{sp1,sp2,jj,kk,mm,nn,ff1,ff2,aux},
+
+aux = Eps[jj,kk] Eps[mm,nn] Phi[jj] Phi[mm] HC[CC[LL][sp1,kk,ff1]].Ga[0,sp1,sp2].LL[sp2,nn,ff2];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "vv"][ff1,ff2] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+LQduq := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,aa,bb,cc,jj,kk,aux},
+
+aux = Eps[aa,bb,cc] Eps[jj,kk] HC[CC[dR][sp1,ff1,aa]].Ga[0,sp1,sp2].uR[sp2,ff2,bb] HC[CC[QL][sp3,jj,ff3,cc]].Ga[0,sp3,sp4].LL[sp4,kk,ff4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "duq"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQqqu := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,aa,bb,cc,jj,kk,aux},
+
+aux = Eps[aa,bb,cc] Eps[jj,kk] HC[CC[QL][sp1,jj,ff1,aa]].Ga[0,sp1,sp2].QL[sp2,kk,ff2,bb] HC[CC[uR][sp3,ff3,cc]].Ga[0,sp3,sp4].lR[sp4,ff4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "qqu"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQqqq := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,aa,bb,cc,jj,kk,mm,nn,aux},
+
+aux = Eps[aa,bb,cc] Eps[jj,nn] Eps[kk,mm] HC[CC[QL][sp1,jj,ff1,aa]].Ga[0,sp1,sp2].QL[sp2,kk,ff2,bb] HC[CC[QL][sp3,mm,ff3,cc]].Ga[0,sp3,sp4].LL[sp4,nn,ff4];
+
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "qqq"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQduu := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,aa,bb,cc,aux},
+
+aux = Eps[aa,bb,cc] HC[CC[dR][sp1,ff1,aa]].Ga[0,sp1,sp2].uR[sp2,ff2,bb] HC[CC[uR][sp3,ff3,cc]].Ga[0,sp3,sp4].lR[sp4,ff4];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "duu"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+

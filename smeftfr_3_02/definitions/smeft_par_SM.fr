@@ -1,0 +1,388 @@
+(* SmeftFR v3.0 package *)
+(* Contains definitions of standarized SMEFT parameters in mass basis *)
+
+SMEFT$SMParameters = {
+
+(* these are variables used to express the Feynman rules in terms of
+Lagrangian parameters; they can be expressed in terms of physical
+observables and WC's using supplied or user defined routines in
+subdirectory input *)
+
+(* unused but required by MG5 to avoid warning messages*)
+  ee == {
+    ParameterType    -> Internal,
+    Value            -> 2 Sqrt[Pi] Sqrt[aEWM1],
+    InteractionOrder -> {QED,1},
+    TeX              -> Subscript[q,e],
+    Description      -> "unit of electric charge"
+  },
+  aEWM1 == {
+    ParameterType    -> External,
+    Value            -> 1/137.035999084,
+(*    Value            -> 1/128.8,*)
+    InteractionOrder -> {QED,2},
+    TeX              -> Subscript[\[Alpha],em],
+    Description      -> "alpha_em at q^2=0 scale"
+   },
+
+(* effective gauge coupling constants *)
+  G1 == {
+    ParameterType    -> External,
+    Value            -> 0.2530,
+    InteractionOrder -> {QED,1},
+    TeX              -> Subscript[G,1],
+    Description      -> "Effective U(1)Y coupling constant"
+  },
+  GW == {
+    ParameterType    -> External,
+    Value            -> 0.4617,
+    InteractionOrder -> {QED,1},
+    TeX              -> Subscript[G,W],
+    Description      -> "Effective SU(2) coupling constant"
+  },
+  GS == {
+    ParameterType    -> Internal,
+    Value            -> 2 Sqrt[Pi] Sqrt[aS],
+    InteractionOrder -> {QCD,1},
+    TeX              -> Subscript[G,s],
+    Description      -> "Effective SU(3) coupling constant at the Z pole"
+  },
+  aS == {
+    ParameterType    -> External,
+    Value            -> 0.112,
+    InteractionOrder -> {QCD,2},
+    TeX              -> Subscript[\[Alpha],s],
+    Description      -> "Alpha_s at the Z pole (averaged)"
+  },
+
+(* Higgs vev and quartic coupling *)
+  vev == {
+    ParameterType    -> External,
+    Value            -> 246,
+    InteractionOrder -> {QED,-1},
+    TeX              -> v,
+    Description      -> "Higgs vacuum expectation value"
+  },
+  hlambda == {
+    ParameterType    -> External,
+    Value            -> 0.259,
+    InteractionOrder -> {QED, 2},
+    TeX              -> \[Lambda],
+    Description      -> "Higgs quartic coupling"
+  },
+
+
+(* physical masses (as parameters, not entries in field definitions) *)
+
+  mz == {
+    ParameterType    -> External,
+    Value            -> 91.1876,
+    TeX              -> Subscript[M,Z],
+    Description      -> "Pole Z boson mass"
+  },
+  mw == {
+    ParameterType    -> External,
+    Value            -> 80.379,
+    TeX              -> Subscript[M,W],
+    Description      -> "Pole W boson mass"
+  },
+  mh == {
+    ParameterType    -> External,
+    Value            -> 125.35,
+    TeX              -> Subscript[M,H],
+    Description      -> "Pole Higgs boson mass"
+  },
+  mqt == {
+    ParameterType    -> External,
+    Value            -> 172.76,
+    TeX              -> Subscript[m,t],
+    Description      -> "Pole top quark mass"
+  },
+  mqc == {
+    ParameterType    -> External,
+    Value            -> 1.27,
+    TeX              -> Subscript[m,c],
+    Description      -> "c quark mass"
+  },
+  mqu == {
+    ParameterType    -> External,
+    Value            -> 2.55 10^-3,
+    TeX              -> Subscript[m,u],
+    Description      -> "u quark mass"
+  },
+  mqb == {
+    ParameterType    -> External,
+    Value            -> 4.7,
+    TeX              -> Subscript[m,b],
+    Description      -> "b quark mass"
+  },
+  mqs == {
+    ParameterType    -> External,
+    Value            -> 0.101,
+    TeX              -> Subscript[m,s],
+    Description      -> "s quark mass"
+  },
+  mqd == {
+    ParameterType    -> External,
+    Value            -> 5.04 10^-3,
+    TeX              -> Subscript[m,d],
+    Description      -> "d quark mass"
+  },
+  mlt == {
+    ParameterType    -> External,
+    Value            -> 1.77686,
+    TeX              -> Subscript[m,\[Tau]],
+    Description      -> "tau lepton mass"
+  },
+  mlm == {
+    ParameterType    -> External,
+    Value            -> 0.1056583755,
+    TeX              -> Subscript[m,\[Mu]],
+    Description      -> "muon mass"
+  },
+  mle == {
+    ParameterType    -> External,
+    Value            -> 0.00051099895,
+    TeX              -> Subscript[m,e],
+    Description      -> "electron mass"
+  },
+  mve == {
+    ParameterType    -> External,
+    Value            -> 0,
+    TeX              -> Subscript[m,\[Nu]e],
+    Description      -> "electron neutrino mass"
+  },
+  mvm == {
+    ParameterType    -> External,
+    Value            -> 0,
+    TeX              -> Subscript[m,\[Nu]\[Mu]],
+    Description      -> "muon neutrino mass"
+  },
+  mvt == {
+    ParameterType    -> External,
+    Value            -> 0,
+    TeX              -> Subscript[m,\[Nu]\[Tau]],
+    Description      -> "tau neutrino mass"
+  },
+
+(* Goldstone and ghost masses (as parameters, not entries in field definitions) *)
+
+
+  MG0== {
+    ParameterType    -> External,
+    Value            -> 91.1876,
+    TeX              -> Subscript[M,G0],
+    Description      -> "G0 Goldstone boson mass"
+  },
+  MGP == {
+    ParameterType    -> External,
+    Value            -> 80.379,
+    TeX              -> Subscript[M,GP],
+    Description      -> "G+/G- Goldstone boson mass"
+  },
+
+  MgZ== {
+    ParameterType    -> External,
+    Value            -> 91.1876,
+    TeX              -> Subscript[M,etaZ],
+    Description      -> "Z ghost mass"
+  },
+  MgW == {
+    ParameterType    -> External,
+    Value            -> 80.379,
+    TeX              -> Subscript[M,etaW],
+    Description      -> "W ghost boson mass"
+  },
+
+
+
+
+(* gauge fixing parameters *)
+
+xiW == {
+    ParameterType -> External,
+    ComplexParameter -> False,
+    Value            -> 1,
+    TeX           -> Subscript[\[Xi],W],
+    Description   -> "W gauge fixing parameter"
+  },
+
+xiZ == {
+    ParameterType -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX           -> Subscript[\[Xi],Z],
+    Description   -> "Z gauge fixing parameter"
+  },
+
+xiA == {
+    ParameterType -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX           -> Subscript[\[Xi],A],
+    Description   -> "Photon gauge fixing parameter"
+  },
+
+xiG == {
+    ParameterType -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX           -> Subscript[\[Xi],G],
+    Description   -> "Gluon gauge fixing parameter"
+  },
+
+
+(* physical flavor mixing *)
+
+(* CKM matrix K = VUL^+ VDL. Here no dim-6 additions. *)
+
+Kq == {
+ParameterType -> External,
+Indices -> {Index[Generation], Index[Generation]},
+Value   -> {Kq[1,1] ->   0.97460,
+            Kq[1,2] ->   0.22537,
+            Kq[1,3] ->   0.00184 - 0.00371 I,
+            Kq[2,1] -> - 0.22537,
+            Kq[2,2] ->   0.97460,
+            Kq[2,3] ->   0.0421,
+            Kq[3,1] ->   0.00764 - 0.00371 I,
+            Kq[3,2] -> - 0.0421,
+            Kq[3,3] ->   1},
+Unitary -> True,
+ComplexParameter -> True,
+TeX           -> K,
+Description -> "CKM Matrix"
+},
+
+(* PMNS matrix U = VLL^+ VVL.  Here no dim-6 additions. *)
+
+Ul == {
+ParameterType -> External,
+Indices -> {Index[Generation], Index[Generation]},
+Value   -> {Ul[1,1] ->   0.825,
+            Ul[1,2] ->   0.545,
+            Ul[1,3] -> - 0.145 + 0.036 I,
+            Ul[2,1] -> - 0.269 + 0.023 I,
+            Ul[2,2] ->   0.606 + 0.015 I,
+            Ul[2,3] ->   0.749,
+            Ul[3,1] ->   0.496 + 0.020 I,
+            Ul[3,2] -> - 0.580 + 0.013 I,
+            Ul[3,3] ->   0.646},
+Unitary -> True,
+TeX           -> U,
+ComplexParameter -> True,
+Description -> "PMNS Matrix"
+},
+
+(* field/coupling normalization constants *)
+
+  g1norm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,"g'"],
+    Description      -> "g1 normalization"
+  },
+
+  gwnorm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,g],
+    Description      -> "gw normalization"
+  },
+
+  gsnorm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,gs],
+    Description      -> "gs normalization"
+  },
+
+  Hnorm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,h],
+    Description      -> "H normalization"
+  },
+
+  G0norm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,G0],
+    Description      -> "G0 normalization"
+  },
+
+  GPnorm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,"G+"],
+    Description      -> "G+ normalization"
+  },
+
+  Wnorm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,W],
+    Description      -> "W normalization"
+  },
+
+  Gnorm == {
+    ParameterType    -> External,
+    Value            -> 1,
+    ComplexParameter -> False,
+    TeX              -> Subscript[Z,gl],
+    Description      -> "gluon normalization"
+  },
+
+  AZnorm11 == {
+    ParameterType    -> External,
+    ComplexParameter -> False,
+    Value            -> 0.8842,
+    TeX              -> Subsuperscript[Z,\[Gamma]Z,11],
+    Description      -> "Physical Z and photon mixing matrix 11 entry"
+},
+
+  AZnorm12 == {
+    ParameterType    -> External,
+    ComplexParameter -> False,
+    Value            -> 0.4712,
+    TeX              -> Subsuperscript[Z,\[Gamma]Z,12],
+    Description      -> "Physical Z and photon mixing matrix 12 entry"
+},
+
+  AZnorm21 == {
+    ParameterType    -> External,
+    ComplexParameter -> False,
+    Value            -> -0.4703,
+    TeX              -> Subsuperscript[Z,\[Gamma]Z,21],
+    Description      -> "Physical Z and photon mixing matrix 21 entry"
+},
+
+  AZnorm22 == {
+    ParameterType    -> External,
+    ComplexParameter -> False,
+    Value            -> 0.8825,
+    TeX              -> Subsuperscript[Z,\[Gamma]Z,22],
+    Description      -> "Physical Z and photon mixing matrix 22 entry"
+},
+
+  AZnorm == {
+    ParameterType    -> External,
+    Indices          -> {SU2W,SU2W},
+    ComplexParameter -> False,
+    Value            -> {AZnorm[1,1] -> 0.8842,
+                         AZnorm[1,2] -> 0.4712,
+                         AZnorm[2,1] -> -0.4703,
+                         AZnorm[2,2] -> 0.8825},
+    TeX              -> Subscript[Z,\[Gamma]Z],
+    Description      -> "Physical Z and photon mixing matrix"
+}
+
+}
+

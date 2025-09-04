@@ -1,0 +1,72 @@
+(* SmeftFR v3.0 package *)
+(* Contains definitions of SMEFT parameters in mass basis *)
+
+(* *************************************** *)
+(* ***** Parameters (SM + dim6/dim8) ***** *)
+(* *************************************** *)
+
+M$Parameters = {
+
+fmv == {
+    ParameterType    -> External,
+    Indices          -> {Index[Generation], Index[Generation]},
+    Value -> {fmv[1, 1] -> 0,
+	      fmv[1, 2] -> 0,
+	      fmv[1, 3] -> 0,
+	      fmv[2, 1] -> 0,
+	      fmv[2, 2] -> 0,
+	      fmv[2, 3] -> 0,
+	      fmv[3, 1] -> 0,
+	      fmv[3, 2] -> 0,
+	      fmv[3, 3] -> 0},
+    TeX              -> Superscript[m, \[Nu]],
+    Description      -> "Neutrino masses"
+},
+
+fml == {
+    ParameterType    -> External,
+    Indices          -> {Index[Generation], Index[Generation]},
+    Value -> {fml[1, 1] -> 0.00051099895000,
+	      fml[1, 2] -> 0,
+	      fml[1, 3] -> 0,
+	      fml[2, 1] -> 0,
+	      fml[2, 2] -> 0.1056583755,
+	      fml[2, 3] -> 0,
+	      fml[3, 1] -> 0,
+	      fml[3, 2] -> 0,
+	      fml[3, 3] -> 1.77686},
+    TeX              -> Superscript[m, l],
+    Description      -> "Lepton pole masses"
+},
+
+fmd == {
+    ParameterType    -> External,
+    Indices          -> {Index[Generation], Index[Generation]},
+    Value -> {fmd[1, 1] -> 5.04 10^-3,
+	      fmd[1, 2] -> 0,
+	      fmd[1, 3] -> 0,
+	      fmd[2, 1] -> 0,
+	      fmd[2, 2] -> 0.101,
+	      fmd[2, 3] -> 0,
+	      fmd[3, 1] -> 0,
+	      fmd[3, 2] -> 0,
+	      fmd[3, 3] -> 4.7},
+    TeX              -> Superscript[m, d],
+  Description      -> "Bottom quark masses"
+},
+
+fmu == {
+    ParameterType    -> External,
+    Indices          -> {Index[Generation], Index[Generation]},
+    Value -> {fmu[1, 1] -> 2.55 10^-3,
+	      fmu[1, 2] -> 0,
+	      fmu[1, 3] -> 0,
+	      fmu[2, 1] -> 0,
+	      fmu[2, 2] -> 1.27,
+	      fmu[2, 3] -> 0,
+	      fmu[3, 1] -> 0,
+	      fmu[3, 2] -> 0,
+	      fmu[3, 3] -> 172.76},
+    TeX              -> Superscript[m, u],
+  Description      -> "Up quark masses"
+},

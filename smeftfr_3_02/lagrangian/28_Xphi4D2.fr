@@ -1,0 +1,61 @@
+(* SmeftFR v3.0 package *)
+(* dim-8 operators from 2005.00059 - X phi^4 D^2 class *)
+(* Operators: {Wphi4D2n1, Wphi4D2n2, Wphi4D2n3, Wphi4D2n4, Bphi4D2n1, Bphi4D2n2} *)
+
+LQWphi4D2n1 := Module[{mu,nu,ii,jj,kk,ll,aux},
+
+aux = (Phi8bar[ll] Phi8[ll]) (DC[Phi8bar[jj],mu] 2 Ta[ii,jj,kk] DC[Phi8[kk],nu]) FS[Wi,mu,nu,ii];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Wphi4D2n1"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQWphi4D2n2 := Module[{mu,nu,al,be,ii,jj,kk,ll,aux},
+
+aux = (Phi8bar[ll] Phi8[ll]) (DC[Phi8bar[jj],mu] 2 Ta[ii,jj,kk] DC[Phi8[kk],nu]) Eps[mu,nu,al,be]/2 HC[FS[Wi,al,be,ii]];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Wphi4D2n2"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQWphi4D2n3 := Module[{mu,nu,ii,jj,kk,ll,mm,nn,oo,aux},
+
+aux = Eps[ii,jj,kk] (Phi8bar[ll] 2 Ta[ii,ll,mm] Phi8[mm]) (DC[Phi8bar[nn],mu] 2 Ta[jj,nn,oo] DC[Phi8[oo],nu]) FS[Wi,mu,nu,kk];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Wphi4D2n3"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQWphi4D2n4 := Module[{mu,nu,al,be,ii,jj,kk,ll,nn,mm,oo,aux},
+
+aux = Eps[ii,jj,kk] (Phi8bar[ll] 2 Ta[ii,ll,mm] Phi8[mm]) (DC[Phi8bar[nn],mu] 2 Ta[jj,nn,oo] DC[Phi8[oo],nu]) Eps[mu,nu,al,be]/2 HC[FS[Wi,al,be,kk]];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Wphi4D2n4"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQBphi4D2n1 := Module[{mu,nu,ii,jj,aux},
+
+aux = (Phi8bar[ii].Phi8[ii]) (DC[Phi8bar[jj],mu] DC[Phi8[jj],nu]) FS[B,mu,nu];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Bphi4D2n1"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQBphi4D2n2 := Module[{mu,nu,al,be,ii,jj,aux},
+
+aux = (Phi8bar[ii].Phi8[ii]) (DC[Phi8bar[jj],mu] DC[Phi8[jj],nu]) Eps[mu,nu,al,be]/2 HC[FS[B,al,be]];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "Bphi4D2n2"] ] aux /. SMEFTGaugeRules
+];

@@ -1,0 +1,61 @@
+(* SmeftFR v3.0 package *)
+(* dim-8 operators from 2005.00059 - X^3 phi^2 class *)
+(* Operators: {G3phi2n1, G3phi2n2, W3phi2n1, W3phi2n2, W2Bphi2n1, W2Bphi2n2} *)
+
+LQG3phi2n1 := Module[{mu,nu,ro,aa,bb,cc,ii,aux},
+
+aux = f[aa,bb,cc] (Phi8bar[ii].Phi8[ii]) FS[Gl,mu,nu,aa] FS[Gl,nu,ro,bb] FS[Gl,ro,mu,cc];
+aux = ExpandIndices[ aux, FlavorExpand->SU2D ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "G3phi2n1"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQG3phi2n2 := Module[{mu,nu,ro,al,be,aa,bb,cc,ii,aux},
+
+aux = f[aa,bb,cc] (Phi8bar[ii].Phi8[ii]) FS[Gl,mu,nu,aa] FS[Gl,nu,ro,bb] Eps[ro,mu,al,be]/2 HC[FS[Gl,al,be,cc]];
+aux = ExpandIndices[ aux, FlavorExpand->SU2D ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "G3phi2n2"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQW3phi2n1 := Module[{ii,jj,kk,ll,mu,nu,ro,aux},
+
+aux = Eps[ii,jj,kk] (Phi8bar[ll].Phi8[ll]) FS[Wi,mu,nu,ii] FS[Wi,nu,ro,jj] FS[Wi,ro,mu,kk];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "W3phi2n1"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQW3phi2n2 := Module[{ii,jj,kk,ll,mu,nu,ro,al,be,aux},
+
+aux = Eps[ii,jj,kk] (Phi8bar[ll].Phi8[ll]) FS[Wi,mu,nu,ii] FS[Wi,nu,ro,jj] Eps[ro,mu,al,be]/2 HC[FS[Wi,al,be,kk]];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "W3phi2n2"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQW2Bphi2n1 := Module[{ii,jj,kk,ll,mm,mu,nu,ro,aux},
+
+aux = Eps[ii,jj,kk] (Phi8bar[ll] 2 Ta[ii,ll,mm] Phi8[mm]) FS[B,mu,nu] FS[Wi,nu,ro,jj] FS[Wi,ro,mu,kk];
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "W2Bphi2n1"] ] aux /. SMEFTGaugeRules
+];
+
+
+
+LQW2Bphi2n2 := Module[{ii,jj,kk,ll,mm,mu,nu,ro,al,be,ga,de,aux},
+
+aux = Eps[ii,jj,kk] (Phi8bar[ll] 2 Ta[ii,ll,mm] Phi8[mm]) (Eps[mu,nu,al,be]/2 HC[FS[B,al,be]] FS[Wi,nu,ro,jj] FS[Wi,mu,ro,kk] + FS[B,mu,nu] FS[Wi,nu,ro,jj] Eps[mu,ro,ga,de]/2 HC[FS[Wi,ga,de,kk]]);
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+
+ExpandIndices[ ToExpression[SMEFT$WB <> "W2Bphi2n2"] ] aux /. SMEFTGaugeRules
+];

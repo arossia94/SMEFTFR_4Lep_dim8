@@ -1,0 +1,54 @@
+(* SmeftFR v2.0 package *)
+(* 4-fermion operators of the form (Lbar R)(Rbar L) and (Lbar R)(Lbar R) *)
+
+
+LQledq := Module[{sp1,sp2,ff1,ff2,ff3,ff4,cc,ii,aux},
+
+aux = (LLbar[sp1,ii,ff1].lR[sp1,ff2]).(dRbar[sp2,ff3,cc].QL[sp2,ii,ff4,cc]);
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "ledq"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQquqd1 := Module[{sp1,sp2,ff1,ff2,ff3,ff4,cc,dd,ii,jj,aux},
+
+aux = (QLbar[sp1,ii,ff1,dd].uR[sp1,ff2,dd]).(QLbar[sp2,jj,ff3,cc].dR[sp2,ff4,cc]) Eps[ii,jj];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "quqd1"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQquqd8 := Module[{sp1,sp2,ff1,ff2,ff3,ff4,cc1,cc2,dd1,dd2,ii,jj,aux},
+
+aux = (QLbar[sp1,ii,ff1,cc1].uR[sp1,ff2,cc2]).(QLbar[sp2,jj,ff3,dd1].dR[sp2,ff4,dd2]) T[a,cc1,cc2] T[a,dd1,dd2] Eps[ii,jj];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "quqd8"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQlequ1 := Module[{sp1,sp2,ff1,ff2,ff3,ff4,cc,ii,jj,aux},
+
+aux = (LLbar[sp1,ii,ff1].lR[sp1,ff2]).(QLbar[sp2,jj,ff3,cc].uR[sp2,ff4,cc]) Eps[ii,jj];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "lequ1"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
+LQlequ3 := Module[{sp1,sp2,sp3,sp4,ff1,ff2,ff3,ff4,cc,ii,jj,mu,nu,aux},
+
+aux = (LLbar[sp1,ii,ff1].lR[sp2,ff2]).(QLbar[sp3,jj,ff3,cc].uR[sp4,ff4,cc]) Sigma[nu,mu,sp1,sp2] Sigma[nu,mu,sp3,sp4] Eps[ii,jj];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "lequ3"][ff1,ff2,ff3,ff4] aux, FlavorExpand->{SU2D} ];
+
+aux + HC[aux]
+];
+
+
+
