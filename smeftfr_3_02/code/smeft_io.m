@@ -201,7 +201,7 @@ Get[ FileNameJoin[{SMEFT$Path, "lagrangian", "25_X3phi2.fr"}] ];
 Get[ FileNameJoin[{SMEFT$Path, "lagrangian", "26_X2phi4.fr"}] ];
 Get[ FileNameJoin[{SMEFT$Path, "lagrangian", "27_X2phi2D2.fr"}] ];
 Get[ FileNameJoin[{SMEFT$Path, "lagrangian", "28_Xphi4D2.fr"}] ];	
-
+Get[ FileNameJoin[{SMEFT$Path, "lagrangian", "29_psi4phiD.fr"}] ];
 (* end of SMEFTLoadLagrangian *)
 ]
 

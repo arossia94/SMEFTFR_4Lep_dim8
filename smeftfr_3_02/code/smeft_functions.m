@@ -122,14 +122,16 @@ SMEFT$Dim6FermionOperators = ToExpression[l <> #] & /@ Intersection[
 SMEFT$Dim8BosonOperators = ToExpression[l <> #] & /@ Intersection[
     Join[ GaugeBilinearOperators8, GaugeQuadrupleOperators ], SMEFT$OperatorList ];
 
+SMEFT$Dim8FermionOperators = ToExpression[l <> #] & /@ Intersection[Join[
+FourFermionOperators8 ], SMEFT$OperatorList ];
+
 SMEFT$Dim6NullList = Join[ (# -> 0 & /@ SMEFT$Dim6BosonOperators),
                            (#[__] -> 0 & /@ SMEFT$Dim6FermionOperators) ];
 
-SMEFT$Dim8NullList = (# -> 0 & /@ SMEFT$Dim8BosonOperators);
+SMEFT$Dim8NullList = Join[(# -> 0 & /@ SMEFT$Dim8BosonOperators), 
+                          (#[__] -> 0 & /@ SMEFT$Dim8FermionOperators) ];
 
 ]
-
-
 
 CombineCommonPowers = Function[{expr,par,n},
 (* rearranges power expansion into a_0 + a_1 par^1 + ... a_n par^n *)
