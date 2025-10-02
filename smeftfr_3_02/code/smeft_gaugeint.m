@@ -16,7 +16,7 @@ Module[{aa, bb, tmp, LGG, LGH},
 
 (* leptonic vertices only *)
 
-tmp = SMEFT$LGferm /. G[___] -> 0 /. uq[___] -> 0 /. dq[___] -> 0;
+tmp = SMEFT$LGferm + SMEFT$LGferm6/. G[___] -> 0 /. uq[___] -> 0 /. dq[___] -> 0;
 (* express Yukawa's in term of fermion masses *)
 tmp = tmp /. yl[aa_,bb_] -> SMEFT$YL[aa,bb] // FunctionExpand;
 (* pure gauge vertices *)

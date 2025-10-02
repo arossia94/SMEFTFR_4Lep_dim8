@@ -266,6 +266,7 @@ SMEFTLoadLagrangian[];
 SMEFT$LGeff = LGauge + LHiggs;
 SMEFT$LGeff6 = 0;
 SMEFT$LGFmass = LFermions + LYukawa // FunctionExpand;
+SMEFT$LGferm6 = 0;
 ttt = SMEFT$LGFmass;
 If[ SMEFT$ExpansionOrder > 0,
   If[ MemberQ[ SMEFT$OperatorList, # ], SMEFT$LGeff = SMEFT$LGeff + Lam ToExpression["LQ"<>#] ] & /@ GaugeBilinearOperators;
@@ -275,6 +276,7 @@ If[ SMEFT$ExpansionOrder > 0,
 If[ SMEFT$ExpansionOrder > 1,
   If[ MemberQ[ SMEFT$OperatorList, # ], SMEFT$LGeff = SMEFT$LGeff + Lam^2 ToExpression["LQ"<>#] ] & /@ GaugeBilinearOperators8;
   If[ MemberQ[ SMEFT$OperatorList, # ], SMEFT$LGeff6 = SMEFT$LGeff6 + Lam^2 ToExpression["LQ"<>#] ] & /@ GaugeQuadrupleOperators;
+  If[ MemberQ[ SMEFT$OperatorList, # ], SMEFT$LGferm6 = SMEFT$LGferm6 + Lam^2 ToExpression["LQ"<>#] ] & /@ FourFermionOperators8;];
 ];
 
 SMEFT$LGferm = SMEFT$LGFmass;
