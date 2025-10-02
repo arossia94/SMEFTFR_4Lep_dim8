@@ -1,0 +1,24 @@
+(* SmeftFR v3.0 package *)
+(* dim-8 operators from 2005.00059 - psi^4 H D class *)
+(* Added by Alejo N. Rossia for paper 26xx.yyzzz *)
+(* Operators: {L3eHD3, Le3HD1} *)
+
+L3eHD3 := Module[{ mu,nu,ii,jj,kk,ll,sp1,sp2,ff1,ff2,ff3,ff4,si,aux},
+
+aux = I LLbar[sp1,ii,ff1].LL[sp2,ii,ff2] Ga[si,sp1,sp2] (DC[LLbar[sp,ii,ff3],si].lR[sp,ff4] Phi[ii]);
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "L3eHD3"] ] aux;
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
+
+
+
+Le3HD1 := Module[{ mu,nu,ii,jj,kk,ll,sp1,sp2,ff1,ff2,ff3,ff4,si,aux},
+
+aux = I lRbar[sp1,ii,ff1].lR[sp2,ii,ff2] Ga[si,sp1,sp2] (LLbar[sp,ii,ff3].DC[lR[sp,ff4],si] Phi[ii]);
+aux = ExpandIndices[ aux, FlavorExpand->{SU2W,SU2D} ];
+aux = ExpandIndices[ ToExpression[SMEFT$WB <> "Le3HD1"] ] aux;
+
+aux + HC[aux] /. SMEFTGaugeRules
+];
