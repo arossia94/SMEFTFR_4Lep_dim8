@@ -82,7 +82,7 @@ SMEFT$Dim8Operators = {"phi8", "phi6Box", "phi6D2", "G2phi4n1",
 "W2phi2D2n6", "WBphi2D2n1", "WBphi2D2n2", "WBphi2D2n3", "WBphi2D2n4",
 "WBphi2D2n5", "WBphi2D2n6", "B2phi2D2n1", "B2phi2D2n2", "B2phi2D2n3",
 "Wphi4D2n1", "Wphi4D2n2", "Wphi4D2n3", "Wphi4D2n4", "Bphi4D2n1",
-"Bphi4D2n2"};
+"Bphi4D2n2", "L3eHD3", "Le3HD1"};
 
 SMEFT$AllOperators = Join[ SMEFT$Dim6Operators, SMEFT$Dim8Operators ];
 
@@ -120,6 +120,8 @@ TwoFermionOperators = {"eW", "eB", "uG", "uW", "uB", "dG", "dW", "dB",
 FourFermionOperators = { "ll", "qq1", "qq3", "lq1", "lq3", "ee", "uu",
 "dd", "eu", "ed", "ud1", "ud8", "le", "lu", "ld", "qe", "qu1", "qu8",
 "qd1", "qd8", "ledq", "quqd1", "quqd8", "lequ1", "lequ3" };
+
+FourFermionOperators8 = { "L3eHD3", "Le3HD1" };
 
 BLViolatingOperators = {"vv", "duq", "qqu", "qqq", "duu"};
 
@@ -188,7 +190,9 @@ Tensor4WC = { {"ll",   VLL,VLL,VLL,VLL,False},
               {"duq",  VDR,VDL,VUR,VLL,True},
               {"qqu",  VDL,VUR,VDL,VLR,True},
               {"qqq",  VDL,VDL,VDL,VLL,True},
-              {"duu",  VDR,VUR,VUR,VLR,True} };
+              {"duu",  VDR,VUR,VUR,VLR,True},
+              {"L3eHD3", VLL,VLL,VLL,VLR,False},
+              {"Le3HD1", VLR,VLR,VLL,VLR,False} };
 
 
 (* translation of WC names to WCxf JSON format *)
@@ -237,7 +241,7 @@ Tensor4Class = { "ll" -> 4, "qq1" -> 4, "qq3" -> 4, "lq1" -> 5, "lq3" -> 5,
                  5, "ld" -> 5, "qe" -> 5, "qu1" -> 5, "qd1" -> 5,
                  "qu8" -> 5, "qd8" -> 5, "ledq" -> 9, "quqd1" -> 9,
                  "quqd8" -> 9, "lequ1" -> 9, "lequ3" -> 9, "duq" -> 9,
-                 "qqu" -> 7, "qqq" -> 8, "duu" -> 9 };
+                 "qqu" -> 7, "qqq" -> 8, "duu" -> 9, "L3eHD3" -> 5 , "Le3HD1" -> 5};
 
 (* indices of non-redundant tensorial fermionic WC's. Last element in
 each sublist - False for complex and true for real entries *)
@@ -783,7 +787,16 @@ Tensor4Ind = <|"ll" -> {{1, 1, 1, 1, True}, {1, 1, 1, 2, False}, {1, 1, 1, 3, Fa
    {3, 2, 3, 1, False}, {3, 2, 3, 2, False}, {3, 2, 3, 3, False},
    {3, 3, 1, 1, False}, {3, 3, 1, 2, False}, {3, 3, 1, 3, False},
    {3, 3, 2, 1, False}, {3, 3, 2, 2, False}, {3, 3, 2, 3, False},
-   {3, 3, 3, 1, False}, {3, 3, 3, 2, False}, {3, 3, 3, 3, False}}|>;
+   {3, 3, 3, 1, False}, {3, 3, 3, 2, False}, {3, 3, 3, 3, False}},
+   (* The following dim-8 implementation is incomplete *)
+   "L3eHD3" -> {{1, 1, 1, 1, True}, {1, 1, 2, 2, True}, {1, 1, 3, 3, True},
+                {2, 2, 1, 1, True}, {2, 2, 2, 2, True}, {2, 2, 3, 3, True}, 
+                {3, 3, 1, 1, True}, {3, 3, 2, 2, True}, {3, 3, 3, 3, True}
+   }, 
+   "Le3HD1" -> {{1, 1, 1, 1, True}, {1, 1, 2, 2, True}, {1, 1, 3, 3, True},
+                {2, 2, 1, 1, True}, {2, 2, 2, 2, True}, {2, 2, 3, 3, True}, 
+                {3, 3, 1, 1, True}, {3, 3, 2, 2, True}, {3, 3, 3, 3, True}
+   }|>;
 
 
 (* sigma_munu Dirac matrix *)
